@@ -1,0 +1,49 @@
+body, html, #__next, .site { 
+  background: #4DB6AC;
+}
+
+
+.emoji-art-container {
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 2fr 9fr 1fr;
+  grid-gap: 30px;
+  grid-template-areas: 'side-bar top-bar     side-bar-right ' 
+                       'side-bar canvas side-bar-right'
+                       'side-bar . side-bar-right ';
+  height: 100vh;
+}
+
+
+.canvas {
+  display: grid;
+  grid-area: canvas;
+  overflow: hidden;
+}
+
+.side-bar {
+  display: flex;
+  grid-area: side-bar;
+  align-items: center;
+  padding: 10px;
+  justify-content: flex-start;
+  flex-flow: column;
+}
+
+.side-bar-right {
+  display: flex;
+  grid-area: side-bar-right;
+  align-items: center;
+  padding: 10px;
+  flex-flow: column;
+}
+
+
+.top-bar {
+  display: flex;
+  grid-area: top-bar;
+  padding: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
