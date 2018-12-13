@@ -11,7 +11,7 @@ body, html, #__next, .site {
   grid-gap: 30px;
   grid-template-areas: 'side-bar top-bar     side-bar-right ' 
                        'side-bar canvas side-bar-right'
-                       'side-bar . side-bar-right ';
+                       'side-bar footer side-bar-right ';
   height: 100vh;
 }
 
@@ -45,6 +45,15 @@ body, html, #__next, .site {
   display: flex;
   grid-area: top-bar;
   padding: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.footer {
+  display: flex;
+  grid-area: footer;
+  padding: 10px;
   justify-content: center;
   align-items: flex-start;
 }

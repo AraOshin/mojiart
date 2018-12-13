@@ -10,6 +10,7 @@ import EmojiSelectSideBar from './EmojiSelectSideBar';
 import TopBar from './TopBar';
 import EmojiSettingsSideBar from './EmojiSettingsSideBar';
 import Canvas from './Canvas';
+import Footer from './Footer';
 
 
 const mapStateToProps = state => ({
@@ -88,6 +89,10 @@ class EmojiArtLayout extends Component {
             />
           </Card>
         </RootRef>
+
+        <Paper className="footer">
+          <Footer />
+        </Paper>
 
 
       </div>

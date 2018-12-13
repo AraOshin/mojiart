@@ -99,23 +99,11 @@ class Canvas extends Component {
 
   handleCanvasMouseEnter = () => {
     this.setState({ mouseInCanvas: true });
-    console.log('ENTER', this.state.mouseInCanvas);
   }
 
   handleCanvasMouseLeave = () => {
     this.setState({ mouseInCanvas: false });
-    console.log('EXIT', this.state.mouseInCanvas);
   }
-
-  // renderEmojiArt = () => this.state.paintedEmojis.map(paintedEmoji => (
-  //   <div style={{ position: 'absolute', top: paintedEmoji.y, left: paintedEmoji.x }}>
-  //     <Emoji
-  //       emoji={paintedEmoji.emoji.emoji.id}
-  //       size={paintedEmoji.size}
-  //       skin={paintedEmoji.skin}
-  //     />
-  //   </div>
-  // ))
 
 
   render() {
