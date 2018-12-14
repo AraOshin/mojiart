@@ -20,9 +20,9 @@ class SimpleSlider extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    const { dispatch } = this.props;
 
-
-    this.props.dispatch({
+    dispatch({
       type: 'CHANGE_EMOJI_SIZE',
       emojiSizeValue: value,
 
@@ -47,8 +47,6 @@ class SimpleSlider extends React.Component {
           max={98}
           style={{ padding: 10 }}
         />
-
-
       </div>
 
     );
@@ -57,6 +55,7 @@ class SimpleSlider extends React.Component {
 
 SimpleSlider.propTypes = {
   classes: PropTypes.object.isRequired,
+  dispatch: PropTypes.func,
 };
 
 export default connect()(withStyles(styles)(SimpleSlider));

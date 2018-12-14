@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
   emojiSizeValue: state.root.emojiSizeValue,
+  emoji: state.root.emoji,
+  emojiSkin: state.root.emojiSkin,
+  paintMode: state.root.paintMode,
 
 });
 
@@ -15,22 +18,20 @@ class Canvas extends Component {
     paintedEmojis: [
     ],
     mouseInCanvas: true,
-    paintMode: 'brush',
     painting: false,
-    skin: 1,
 
   }
 
 
   componentDidMount = () => {
     window.addEventListener('click', (e) => {
-      if (this.state.paintMode === 'stamp') {
+      if (this.props.paintMode === 'stamp') {
         if (this.props.emoji && this.state.mouseInCanvas) {
           this.handleEmojiStamp(e);
           this.handleEmojiPaintStroke();
         }
       }
-      if (this.state.paintMode === 'brush') {
+      if (this.props.paintMode === 'brush') {
         if (this.props.emoji && this.state.mouseInCanvas) {
           this.setState({ painting: !this.state.painting });
           if (this.state.painting === false) this.handleEmojiPaintStroke();
@@ -56,13 +57,20 @@ class Canvas extends Component {
 
 
   handleEmojiStamp = (e) => {
+    const {
+      left,
+      top,
+      emoji,
+      emojiSizeValue,
+      emojiSkin,
+    } = this.props;
     {
       const newPaintedEmoji = {
-        x: e.clientX - this.props.left,
-        y: e.clientY - this.props.top,
-        emoji: this.props.emoji,
-        size: this.props.emojiSizeValue,
-        skin: this.state.skin,
+        x: e.clientX - (this.props.emojiSizeValue / 2) - left,
+        y: e.clientY - (this.props.emojiSizeValue / 2) - top,
+        emoji,
+        size: emojiSizeValue,
+        skin: emojiSkin,
       };
 
 
@@ -83,7 +91,7 @@ class Canvas extends Component {
         y: e.clientY - (this.props.emojiSizeValue / 2) - this.props.top,
         emoji: this.props.emoji,
         size: this.props.emojiSizeValue,
-        skin: this.state.skin,
+        skin: this.props.emojiSkin,
       };
 
 
@@ -116,7 +124,7 @@ class Canvas extends Component {
           this.state.paintedEmojis.map(paintedEmoji => (
             <div style={{ position: 'absolute', top: paintedEmoji.y, left: paintedEmoji.x }}>
               <Emoji
-                emoji={paintedEmoji.emoji.emoji.id}
+                emoji={paintedEmoji.emoji.id}
                 size={paintedEmoji.size}
                 skin={paintedEmoji.skin}
               />

@@ -1,43 +1,43 @@
-/* eslint-disable react/prefer-stateless-function */
-// Stateful component needed for OutsideClickHandler
 
-import React, { Component } from 'react';
+
+import React from 'react';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 
-class EmojiArtPicker extends Component {
-  static propTypes = {
-    onEmojiSelect: PropTypes.func,
-    onSkinChange: PropTypes.func,
+const EmojiArtPicker = ({
+  style,
+  dispatch,
+}) => (
 
-    style: PropTypes.object,
-  };
+    <div>
+      <Picker
+        title="Pick-a-moji"
+        emoji="strawberry"
+        set="apple"
+        onSelect={emoji => dispatch({
+          type: 'SELECT_EMOJI',
+          emoji,
+        })
+        }
+        onSkinChange={skin => dispatch({
+          type: 'SELECT_SKIN',
+          skin,
+        })
+        }
+        style={style || {
+          position: 'absolute', top: '50%', right: '50%', transform: 'translate(50%, -50%)', zIndex: '2',
+        }}
+      />
+    </div>
+);
 
-  render() {
-    const {
-      onEmojiSelect,
-      style,
-      onSkinChange,
-    } = this.props;
+EmojiArtPicker.propTypes = {
+  style: PropTypes.object,
+  dispatch: PropTypes.func,
+};
 
-    return (
-      <div>
-        <Picker
-          title="Pick-a-moji"
-          emoji="strawberry"
-          set="apple"
-          onSelect={onEmojiSelect}
-          onSkinChange={onSkinChange}
-          style={style || {
-            position: 'absolute', top: '50%', right: '50%', transform: 'translate(50%, -50%)', zIndex: '2',
-          }}
-        />
-      </div>
 
-    );
-  }
-}
-
-export default EmojiArtPicker;
+export default connect()(EmojiArtPicker);

@@ -13,17 +13,10 @@ import Canvas from './Canvas';
 import Footer from './Footer';
 
 
-const mapStateToProps = state => ({
-  emojiSizeValue: state.root.emojiSizeValue,
-
-});
-
-
 class EmojiArtLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emoji: null,
       cell: {},
     };
     this.cardRef = React.createRef();
@@ -38,26 +31,6 @@ class EmojiArtLayout extends Component {
     this.setState({ cell });
   }
 
-  handleEmojiSelect = (emoji) => {
-    this.setState({ emoji: { emoji } });
-    this.setState({ painting: false }); // todo remove this fix
-  }
-
-  handleEmojiSkinSelect = (skin) => {
-    this.setState({ skin });
-    this.setState({ painting: false }); // todo remove this fix
-  }
-
-  handleModeSelect = (mode) => {
-    if (mode === 'stamp') this.setState({ paintMode: 'stamp' });
-    if (mode === 'brush') this.setState({ paintMode: 'brush' });
-    this.setState({ painting: false }); // todo remove this fix
-  }
-
-  handleCanvasClear = () => {
-    this.setState(({ paintedEmojis: [] }));
-    this.setState({ painting: false }); // todo remove this fix
-  }
 
   render() {
     return (
@@ -71,35 +44,28 @@ class EmojiArtLayout extends Component {
           <EmojiSelectSideBar
             handleEmojiSelect={this.handleEmojiSelect}
             handleEmojiSkinSelect={this.handleEmojiSkinSelect}
-            currentPaintMode="brush" // todo
           />
         </Paper>
 
 
         <Paper className="side-bar-right">
-          <EmojiSettingsSideBar onModeSelectClick={this.handleModeSelect} />
+          <EmojiSettingsSideBar />
         </Paper>
 
         <RootRef rootRef={this.cardRef}>
           <Card className="canvas">
             <Canvas
-              emoji={this.state.emoji}
               left={this.state.cell.left}
               top={this.state.cell.top}
             />
           </Card>
         </RootRef>
-
         <Paper className="footer">
           <Footer />
         </Paper>
-
-
       </div>
-
-
     );
   }
 }
 
-export default connect(mapStateToProps)(EmojiArtLayout);
+export default connect()(EmojiArtLayout);

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 const mapStateToProps = state => ({
@@ -10,10 +11,12 @@ const mapStateToProps = state => ({
 });
 
 
-const TopBar = ({ onClearCanvasClick }) => (
+const TopBar = ({ dispatch }) => (
   <div>
     <Button
-      onClick={onClearCanvasClick}
+      onClick={() => dispatch({
+        type: 'CLEAR_CANVAS',
+      })}
       variant="contained"
       color="primary"
     >
@@ -22,6 +25,11 @@ const TopBar = ({ onClearCanvasClick }) => (
     </Button>
   </div>
 );
+
+
+TopBar.propTypes = {
+  dispatch: PropTypes.func,
+};
 
 
 export default connect(mapStateToProps)(TopBar);
