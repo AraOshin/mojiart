@@ -7,6 +7,7 @@ const initialState = {
   selectedEmoji: null,
   paintMode: 'brush',
   emojiSkin: '1',
+  canvasImg: null,
 
 };
 
@@ -53,6 +54,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         paintedEmojisHistory: [],
+      };
+    case 'UPLOAD_CANVAS_IMG':
+      console.log('reducer called', action.canvasImg);
+      return {
+        ...state,
+        canvasImg: action.canvasImg,
       };
     default:
       return state;

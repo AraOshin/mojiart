@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ImageUploader from './ImageUploader';
 
 
 const mapStateToProps = state => ({
@@ -12,7 +13,7 @@ const mapStateToProps = state => ({
 
 
 const TopBar = ({ dispatch }) => (
-  <div>
+  <div className="top-bar">
     <Button
       onClick={() => dispatch({
         type: 'CLEAR_CANVAS',
@@ -23,6 +24,11 @@ const TopBar = ({ dispatch }) => (
       Clear Canvas
         <DeleteIcon />
     </Button>
+
+
+    <ImageUploader />
+
+
   </div>
 );
 

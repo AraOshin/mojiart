@@ -13,6 +13,10 @@ import Canvas from './Canvas';
 import Footer from './Footer';
 
 
+const mapStateToProps = state => ({
+  canvasImg: state.root.canvasImg,
+});
+
 class EmojiArtLayout extends Component {
   constructor(props) {
     super(props);
@@ -36,11 +40,13 @@ class EmojiArtLayout extends Component {
     return (
       <div className="emoji-art-container">
 
-        <Paper className="top-bar">
-          <TopBar onClearCanvasClick={this.handleCanvasClear} />
+        <Paper className="top-bar-container">
+          <TopBar
+            onClearCanvasClick={this.handleCanvasClear}
+          />
         </Paper>
 
-        <Paper className="side-bar">
+        <Paper className="side-bar-left-container">
           <EmojiSelectSideBar
             handleEmojiSelect={this.handleEmojiSelect}
             handleEmojiSkinSelect={this.handleEmojiSkinSelect}
@@ -48,13 +54,17 @@ class EmojiArtLayout extends Component {
         </Paper>
 
 
-        <Paper className="side-bar-right">
+        <Paper className="side-bar-right-container">
           <EmojiSettingsSideBar />
         </Paper>
 
         <RootRef rootRef={this.cardRef}>
-          <Card className="canvas">
+          <Card
+            className="canvas"
+            style={{ backgroundImage: `url(${this.props.canvasImg})`, backgroundSize: 'cover' }}
+          >
             <Canvas
+
               left={this.state.cell.left}
               top={this.state.cell.top}
             />
@@ -68,4 +78,4 @@ class EmojiArtLayout extends Component {
   }
 }
 
-export default connect()(EmojiArtLayout);
+export default connect(mapStateToProps)(EmojiArtLayout);

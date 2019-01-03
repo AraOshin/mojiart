@@ -6,12 +6,13 @@ body, html, #__next, .site {
 .emoji-art-container {
   display: grid;
   padding: 20px;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 5fr 2fr;
   grid-template-rows: 2fr 9fr 1fr;
   grid-gap: 30px;
-  grid-template-areas: 'side-bar top-bar     side-bar-right ' 
-                       'side-bar canvas side-bar-right'
-                       'side-bar footer side-bar-right ';
+  grid-template-areas: 
+  'side-bar-left top-bar  side-bar-right' 
+  'side-bar-left canvas side-bar-right'
+  'side-bar-left footer side-bar-right';
   height: 100vh;
 }
 
@@ -23,30 +24,44 @@ body, html, #__next, .site {
   position: relative;
 }
 
-.side-bar {
+.side-bar-left-container{
+  grid-area: side-bar-left;
+}
+
+.side-bar-left {
   display: flex;
-  grid-area: side-bar;
+  height:100%;
+  flex-flow: column;
   align-items: center;
   padding: 10px;
   justify-content: flex-start;
-  flex-flow: column;
+
+}
+
+.side-bar-right-container {
+  grid-area: side-bar-right;
 }
 
 .side-bar-right {
   display: flex;
-  grid-area: side-bar-right;
-  align-items: center;
-  padding: 10px;
+  height:100%;
   flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10%;
+
 }
 
 
+.top-bar-container {
+  grid-area: top-bar;
+}
+
 .top-bar {
   display: flex;
-  grid-area: top-bar;
   padding: 40px;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 

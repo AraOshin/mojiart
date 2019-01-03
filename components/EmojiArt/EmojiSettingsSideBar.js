@@ -16,14 +16,16 @@ const EmojiSettingsSideBar = ({
   paintMode,
   dispatch,
 }) => (
-    <div>
-      <CardContent>
+    <div className="side-bar-right">
+
+      <div>
         <Typography gutterBottom align="center" variant="h6" component="h2" color="primary">
           Choose mode
         </Typography>
-        <div style={{
-          display: 'flex', flexFlow: 'row', justifyContent: 'center', paddingBottom: '10px', align: 'center',
-        }}
+        <div
+          style={{
+            display: 'flex', flexFlow: 'row', justifyContent: 'center', paddingBottom: '10px', align: 'center',
+          }}
         >
           <Button
             onClick={() => dispatch({
@@ -58,14 +60,19 @@ const EmojiSettingsSideBar = ({
           </Button>
         </div>
 
+      </div>
+
+
+      <div>
         <Typography align="center" gutterBottom variant="h6" component="h2" color="primary">
           Adjust Size
         </Typography>
 
         <EmojiSizeSlider />
         <Emoji emoji="strawberry" size={emojiSizeValue} />
+      </div>
 
-      </CardContent>
+
     </div>
 );
 
