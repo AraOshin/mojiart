@@ -16,6 +16,6 @@ yarn-error.log*
 
 # Next.js
 /.next
+/out
 
-# Firebase 
-/src/firebase
+

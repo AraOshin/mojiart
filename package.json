@@ -17,7 +17,7 @@
     "prop-types": "^15.6.2",
     "react": "latest",
     "react-dom": "latest",
-    "react-jss": "latest",
+    "react-jss": "^10.0.0-alpha.6",
     "react-outside-click-handler": "^1.2.2",
     "react-redux": "^5.1.0",
     "redux": "^4.0.1",
@@ -28,6 +28,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   }
 }
