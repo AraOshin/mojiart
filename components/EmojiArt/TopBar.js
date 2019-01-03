@@ -24,7 +24,15 @@ const TopBar = ({ dispatch }) => (
       Clear Canvas
         <DeleteIcon />
     </Button>
-
+    <Button
+      onClick={() => dispatch({
+        type: 'UNDO_STROKE',
+      })}
+      variant="contained"
+      color="primary"
+    >
+      Undo
+    </Button>
 
     <ImageUploader />
 

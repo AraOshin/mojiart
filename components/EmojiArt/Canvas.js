@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   emojiSkin: state.root.emojiSkin,
   paintMode: state.root.paintMode,
   paintedEmojisHistory: state.root.paintedEmojisHistory,
+
 });
 
 
@@ -28,7 +29,6 @@ class Canvas extends Component {
       if (this.props.paintMode === 'stamp') {
         if (this.props.emoji && this.state.mouseInCanvas) {
           this.handleEmojiStamp(e);
-          this.handleEmojiPaintStroke();
         }
       }
       if (this.props.paintMode === 'brush') {
@@ -51,9 +51,9 @@ class Canvas extends Component {
     this.props.dispatch({
       type: 'UPDATE_HISTORY',
       mode: this.state.mode,
-      paintedEmojisHistory: this.state.paintedEmojis,
+      paintedEmojis: this.state.paintedEmojis,
     });
-    // this.setState({ paintedEmojis: [] });
+    this.setState({ paintedEmojis: [] });
   }
 
 
@@ -75,12 +75,13 @@ class Canvas extends Component {
       };
 
 
-      const updatedPaintedEmojis = [
-        ...this.state.paintedEmojis,
-        newPaintedEmoji,
-      ];
-      this.setState({ paintedEmojis: updatedPaintedEmojis });
       console.log('PAINTING', this.state.mouseInCanvas);
+
+      this.props.dispatch({
+        type: 'UPDATE_HISTORY',
+        mode: this.state.mode,
+        paintedEmojis: newPaintedEmoji,
+      });
     }
   }
 
@@ -114,34 +115,6 @@ class Canvas extends Component {
     this.setState({ mouseInCanvas: false });
   }
 
-  renderCanvasEmojis = () => {
-    if (this.props.paintedEmojisHistory.length) {
-      return this.props.paintedEmojisHistory
-        .map((emojiPaintStroke) => {
-          if (Array.isArray(emojiPaintStroke)) {
-            return emojiPaintStroke.map(emojiPaintStroke => (
-              <div style={{ position: 'absolute', top: emojiPaintStroke.y, left: emojiPaintStroke.x }}>
-                <Emoji
-                  emoji={emojiPaintStroke.emoji.id}
-                  size={emojiPaintStroke.size}
-                  skin={emojiPaintStroke.skin}
-                />
-              </div>
-            ));
-          }
-          return (
-            <div style={{ position: 'absolute', top: emojiPaintStroke.y, left: emojiPaintStroke.x }}>
-              <Emoji
-                emoji={emojiPaintStroke.emoji.id}
-                size={emojiPaintStroke.size}
-                skin={emojiPaintStroke.skin}
-              />
-            </div>
-          );
-        });
-    }
-    return null;
-  }
 
   render() {
     return (
@@ -149,20 +122,59 @@ class Canvas extends Component {
         onMouseEnter={() => this.handleCanvasMouseEnter()}
         onMouseLeave={() => this.handleCanvasMouseLeave()}
       >
+        {this.props.paintedEmojisHistory
 
-        {
-          this.state.paintedEmojis
-            .map(paintedEmojis => (
-              <div style={{ position: 'absolute', top: paintedEmojis.y, left: paintedEmojis.x }}>
+          && this.props.paintedEmojisHistory.map((emojiPaintStroke) => {
+            if (Array.isArray(emojiPaintStroke)) {
+              return emojiPaintStroke.map(emoji => (
+                <div style={{
+                  position: 'absolute',
+                  top: emoji.y,
+                  left: emoji.x,
+                }}
+                >
+                  {console.log('painted emoji', emoji)}
+                  <Emoji
+                    emoji={emoji.emoji.id}
+                    size={emoji.size}
+                    skin={emoji.skin}
+                  />
+                </div>
+              ));
+            }
+            return (
+              <div style={{ position: 'absolute', top: emojiPaintStroke.y, left: emojiPaintStroke.x }}>
+                {console.log('painted emoji', emojiPaintStroke)}
                 <Emoji
-                  emoji={paintedEmojis.emoji.id}
-                  size={paintedEmojis.size}
-                  skin={paintedEmojis.skin}
+                  emoji={emojiPaintStroke.emoji.id}
+                  size={emojiPaintStroke.size}
+                  skin={emojiPaintStroke.skin}
                 />
               </div>
-            ))
+            );
+          })
         }
-        {/* {this.renderCanvasEmojis()} */}
+        {this.state.paintedEmojis
+          && this.state.paintedEmojis.map(emoji => (
+            <div style={{
+              position: 'absolute',
+              top: emoji.y,
+              left: emoji.x,
+            }}
+            >
+              {console.log('painted emoji', emoji)}
+              <Emoji
+                emoji={emoji.emoji.id}
+                size={emoji.size}
+                skin={emoji.skin}
+              />
+            </div>
+          ))
+        }
+
+        {console.log(this.props.top)}
+
+
       </div>
     );
   }

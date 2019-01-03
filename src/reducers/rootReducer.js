@@ -61,6 +61,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         canvasImg: action.canvasImg,
       };
+    case 'UNDO_STROKE':
+      console.log('reducer called', action.canvasImg);
+      return {
+        ...state,
+        paintedEmojisHistory: state.paintedEmojisHistory.slice(0, state.paintedEmojisHistory.length - 1),
+      };
     default:
       return state;
   }
