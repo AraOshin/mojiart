@@ -8,6 +8,7 @@ const initialState = {
   paintMode: 'brush',
   emojiSkin: '1',
   canvasImg: null,
+  selectedCanvasImage: null,
 
 };
 
@@ -60,6 +61,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         canvasImg: action.canvasImg,
+        selectedCanvasImage: null,
+
+      };
+    case 'SELECT_CANVAS_IMG':
+      console.log('reducer called', action.selectedImage);
+      return {
+        ...state,
+        selectedCanvasImage: action.selectedImage,
+        canvasImg: null,
       };
     case 'UNDO_STROKE':
       console.log('reducer called', action.canvasImg);

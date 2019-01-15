@@ -15,7 +15,9 @@ import Footer from './Footer';
 
 const mapStateToProps = state => ({
   canvasImg: state.root.canvasImg,
+  selectedCanvasImage: state.root.selectedCanvasImage,
 });
+
 
 class EmojiArtLayout extends Component {
   constructor(props) {
@@ -33,11 +35,19 @@ class EmojiArtLayout extends Component {
   storeCell = () => {
     const cell = this.cardRef.current.getBoundingClientRect();
     this.setState({ cell });
-  }
+  };
 
 
   render() {
+    const { selectedCanvasImage, canvasImg } = this.props;
+
+    const canvasBackgroundImage = this.props.selectedCanvasImage
+      ? `url(/static/canvasImages/${this.props.selectedCanvasImage}.jpg)`
+      : `url(${this.props.canvasImg})`;
+
+
     return (
+
       <div className="emoji-art-container">
 
         <Paper className="top-bar-container">
@@ -61,7 +71,10 @@ class EmojiArtLayout extends Component {
         <RootRef rootRef={this.cardRef}>
           <Card
             className="canvas"
-            style={{ backgroundImage: `url(${this.props.canvasImg})`, backgroundSize: 'cover' }}
+
+            style={
+
+              { backgroundImage: canvasBackgroundImage, backgroundSize: 'cover' }}
           >
             <Canvas
 

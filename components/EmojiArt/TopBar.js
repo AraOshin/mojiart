@@ -21,7 +21,7 @@ const TopBar = ({ dispatch }) => (
       variant="contained"
       color="primary"
     >
-      Clear Canvas
+      Clear
         <DeleteIcon />
     </Button>
     <Button

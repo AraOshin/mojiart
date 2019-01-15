@@ -22,34 +22,25 @@ body, html, #__next, .site {
   grid-area: canvas;
   overflow: hidden;
   position: relative;
+  transition: all .2s linear;
 }
 
 .side-bar-left-container{
   grid-area: side-bar-left;
 }
 
-.side-bar-left {
+.side-bar {
   display: flex;
-  height:100%;
+  height:85%;
   flex-flow: column;
   align-items: center;
+  justify-content: space-evenly;
   padding: 10px;
-  justify-content: flex-start;
 
 }
 
 .side-bar-right-container {
   grid-area: side-bar-right;
-}
-
-.side-bar-right {
-  display: flex;
-  height:100%;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10%;
-
 }
 
 
@@ -72,3 +63,16 @@ body, html, #__next, .site {
   justify-content: center;
   align-items: flex-start;
 }
+
+
+.footer a {
+  text-decoration: none;
+}
+
+
+.layout-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+

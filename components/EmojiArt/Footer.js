@@ -6,10 +6,10 @@ import { Emoji } from 'emoji-mart';
 const Footer = () => (
   <div>
 
-    <a href="https://github.com/AraOshin/emojiart">
+    <a href="https://github.com/AraOshin/mojiart">
 
       <div style={{
-        display: 'flex', flexFlow: 'row', justifyContent: 'center', align: 'center',
+        display: 'flex', flexFlow: 'row', justifyContent: 'center',
       }}
       >
         <Emoji emoji="art" size={34} />

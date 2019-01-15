@@ -3,7 +3,7 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { JssProvider } from 'react-jss';
+import JssProvider from 'react-jss/lib/JssProvider';
 import {
   createStore, applyMiddleware, compose, combineReducers,
 } from 'redux';
@@ -13,6 +13,7 @@ import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import getPageContext from '../src/getPageContext';
 import rootReducer from '../src/reducers/rootReducer';
+import '../components/EmojiArt/EmojiArt.css';
 
 const reducers = combineReducers({
   root: rootReducer,

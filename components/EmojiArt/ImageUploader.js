@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-class UploadFileV2 extends Component {
+class ImageUploader extends Component {
   imageUpload = (e) => {
-    const file = e.target.files[0];
-
-    const getBase64 = file => new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-      reader.readAsDataURL(file);
-    });
-
-    getBase64(file).then((base64) => {
-      localStorage.fileBase64 = base64;
-      console.debug('file stored', base64);
-
-      this.props.dispatch({
-        type: 'UPLOAD_CANVAS_IMG',
-        canvasImg: base64,
-      });
+    const fileUrl = window.URL.createObjectURL(e.target.files[0]);
+    this.props.dispatch({
+      type: 'UPLOAD_CANVAS_IMG',
+      canvasImg: fileUrl,
     });
   };
 
@@ -50,9 +36,4 @@ class UploadFileV2 extends Component {
   }
 }
 
-
-// UploadFileV2.propTypes = {
-//   onFileLoaded: PropTypes.func.isRequired,
-// };
-
-export default connect()(UploadFileV2);
+export default connect()(ImageUploader);

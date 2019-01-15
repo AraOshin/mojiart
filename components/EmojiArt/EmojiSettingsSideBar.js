@@ -1,9 +1,11 @@
 import React from 'react';
-import { Typography, CardContent, Button } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { Emoji } from 'emoji-mart';
 import PropTypes from 'prop-types';
 import EmojiSizeSlider from './EmojiSizeSlider';
+import ImageUploader from './ImageUploader';
+import ImageSelector from './ImageSelector';
 
 const mapStateToProps = state => ({
   emojiSizeValue: state.root.emojiSizeValue,
@@ -16,17 +18,13 @@ const EmojiSettingsSideBar = ({
   paintMode,
   dispatch,
 }) => (
-    <div className="side-bar-right">
+    <div className="side-bar">
 
       <div>
         <Typography gutterBottom align="center" variant="h6" component="h2" color="primary">
           Choose mode
         </Typography>
-        <div
-          style={{
-            display: 'flex', flexFlow: 'row', justifyContent: 'center', paddingBottom: '10px', align: 'center',
-          }}
-        >
+        <div className="layout-row">
           <Button
             onClick={() => dispatch({
               type: 'CHANGE_PAINT_MODE',
@@ -73,7 +71,15 @@ const EmojiSettingsSideBar = ({
       </div>
 
 
+      <Typography>
+        Add Bakcground Image
+      </Typography>
+
+      <ImageUploader />
+      <ImageSelector />
     </div>
+
+
 );
 
 EmojiSettingsSideBar.propTypes = {
