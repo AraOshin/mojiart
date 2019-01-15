@@ -34,9 +34,6 @@ const TopBar = ({ dispatch }) => (
       Undo
     </Button>
 
-    <ImageUploader />
-
-
   </div>
 );
 

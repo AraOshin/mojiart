@@ -26,7 +26,7 @@ class ImageUploader extends Component {
           onChange={this.imageUpload}
         />
         <label htmlFor="raised-button-file">
-          <Button variant="raised" component="span">
+          <Button variant="contained" component="span" style={{ marginTop: 15 }}>
             Upload
           </Button>
         </label>

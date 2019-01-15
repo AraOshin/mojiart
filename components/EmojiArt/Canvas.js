@@ -73,10 +73,6 @@ class Canvas extends Component {
         size: emojiSizeValue,
         skin: emojiSkin,
       };
-
-
-      console.log('PAINTING', this.state.mouseInCanvas);
-
       this.props.dispatch({
         type: 'UPDATE_HISTORY',
         mode: this.state.mode,
@@ -102,7 +98,7 @@ class Canvas extends Component {
         newPaintedEmoji,
       ];
       this.setState({ paintedEmojis: updatedPaintedEmojis });
-      console.log('PAINTING', this.state.mouseInCanvas);
+      // console.log('PAINTING', this.state.mouseInCanvas);
     }
   }
 
@@ -133,7 +129,6 @@ class Canvas extends Component {
                   left: emoji.x,
                 }}
                 >
-                  {console.log('painted emoji', emoji)}
                   <Emoji
                     emoji={emoji.emoji.id}
                     size={emoji.size}
@@ -144,7 +139,7 @@ class Canvas extends Component {
             }
             return (
               <div style={{ position: 'absolute', top: emojiPaintStroke.y, left: emojiPaintStroke.x }}>
-                {console.log('painted emoji', emojiPaintStroke)}
+                {/* {console.log('painted emoji', emojiPaintStroke)} */}
                 <Emoji
                   emoji={emojiPaintStroke.emoji.id}
                   size={emojiPaintStroke.size}
@@ -162,7 +157,6 @@ class Canvas extends Component {
               left: emoji.x,
             }}
             >
-              {console.log('painted emoji', emoji)}
               <Emoji
                 emoji={emoji.emoji.id}
                 size={emoji.size}
@@ -171,8 +165,6 @@ class Canvas extends Component {
             </div>
           ))
         }
-
-        {console.log(this.props.top)}
 
 
       </div>

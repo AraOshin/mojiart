@@ -16,6 +16,22 @@ body, html, #__next, .site {
   height: 100vh;
 }
 
+@media (max-width: 1020px) {
+  .emoji-art-container {
+    grid-template-rows: 100px auto 400px 400px 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    'top-bar' 
+    'side-bar-left'
+    'canvas'
+    'side-bar-right'
+    'footer'
+    ;
+    height: auto;
+    padding: 10px;
+  }
+}
+
 
 .canvas {
   display: grid;
@@ -27,6 +43,7 @@ body, html, #__next, .site {
 
 .side-bar-left-container{
   grid-area: side-bar-left;
+  min-width: 300px;
 }
 
 .side-bar {
@@ -39,8 +56,18 @@ body, html, #__next, .site {
 
 }
 
+@media (max-width: 1020px) {
+  .side-bar {
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: center;
+    height:100%;
+  }
+}
+
 .side-bar-right-container {
   grid-area: side-bar-right;
+  min-width: 300px;
 }
 
 
@@ -50,18 +77,18 @@ body, html, #__next, .site {
 
 .top-bar {
   display: flex;
-  padding: 40px;
   justify-content: space-evenly;
   align-items: center;
+  height: 100%;
 }
 
 
 .footer {
   display: flex;
   grid-area: footer;
-  padding: 10px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  height: 100%;
 }
 
 
@@ -74,5 +101,23 @@ body, html, #__next, .site {
   display: flex;
   flex-flow: row;
   justify-content: center;
+}
+
+
+.emoji-select-button{
+  display: none;
+}
+
+@media (max-width: 1020px) {
+  .emoji-picker{
+    display: none;
+}
+}
+
+
+@media (max-width: 1020px) {
+  .emoji-select-button{
+    display: block;
+}
 }
 

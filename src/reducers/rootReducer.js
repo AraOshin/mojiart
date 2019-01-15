@@ -8,7 +8,7 @@ const initialState = {
   paintMode: 'brush',
   emojiSkin: '1',
   canvasImg: null,
-  selectedCanvasImage: null,
+  selectedCanvasImage: 'nature',
 
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import EmojiArtPicker from './EmojiArtPicker';
+import EmojiSelectButtonDialog from './EmojiSelectButtonDialog';
 
 
 const EmojiSelectSideBar = () => (
@@ -8,11 +9,17 @@ const EmojiSelectSideBar = () => (
     <Typography gutterBottom paragraph align="center" variant="h4" component="h2" color="primary">
       Pick an Emoji to ART with
     </Typography>
-    <EmojiArtPicker
-      style={{
-        position: 'relative', zIndex: 100,
+    <EmojiSelectButtonDialog />
+
+    <div
+      className="emoji-picker"
+    >
+      <EmojiArtPicker style={{
+        position: 'relative',
+        zIndex: 100,
       }}
-    />
+      />
+    </div>
   </div>
 );
 

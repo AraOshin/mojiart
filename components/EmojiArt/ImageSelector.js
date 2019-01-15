@@ -16,7 +16,7 @@ const styles = theme => ({
 
 class ImageSelector extends React.Component {
   state = {
-    selectedCanvasImg: '',
+    selectedCanvasImg: 'nature',
     open: false,
   };
 

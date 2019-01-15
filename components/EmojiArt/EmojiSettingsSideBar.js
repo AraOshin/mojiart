@@ -70,13 +70,27 @@ const EmojiSettingsSideBar = ({
         <Emoji emoji="strawberry" size={emojiSizeValue} />
       </div>
 
+      <div>
+        <Typography align="center" gutterBottom variant="h6" component="h2" color="primary">
+          Add Bakcground Image
+        </Typography>
 
-      <Typography>
-        Add Bakcground Image
-      </Typography>
+        <div className="layout-row">
+          <ImageUploader />
+          <Typography
+            style={{ margin: '.5em' }}
+            color="primary"
+            variant="h6"
+            component="h2"
+          >
+            or
+          </Typography>
+          <ImageSelector />
 
-      <ImageUploader />
-      <ImageSelector />
+        </div>
+
+      </div>
+
     </div>
 
 
