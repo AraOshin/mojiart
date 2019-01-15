@@ -1,1 +1,1 @@
-This is a personal project of Ara Oshin!
+http://emojiart.now.sh
